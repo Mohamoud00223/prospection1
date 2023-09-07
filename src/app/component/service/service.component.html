@@ -1,0 +1,104 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-4 mt-5">
+            <div class="card border-0 shadow p-3">
+                <div class="form-floating mb-3 tetx-center">
+                    <h5 class="text-center text-warning">Ajout d'un service</h5>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="nom">
+                    <label for="lastName">Nom</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="type" name="email" [(ngModel)]="type">
+                    <label for="email">Type de service</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="prix" name="prix" [(ngModel)]="prix">
+                    <label for="mobile">Prix</label>
+                </div>
+                <button type="button" class="btn btn-outline-success" (click)="addService()">Ajouter un service</button>
+
+            </div>
+        </div>
+        <div class="col-md-8 mt-2" style="overflow-x: auto;">
+            <h5 class="text-danger"> Liste des services</h5>
+            <div class="card p-3 shadow">
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Prix (fcfa)</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let service of getPaginatedServiceList()">
+
+                                <td>
+                                    <ng-container *ngIf="!service.editing; else editFieldNom">
+                                        {{service.nom}}
+                                    </ng-container>
+                                    <ng-template #editFieldNom>
+                                        <div class="form-group">
+                                            <input [(ngModel)]="service.nom" />
+                                        </div>
+                                    </ng-template>
+                                </td>
+
+                                <td>
+                                    <ng-container *ngIf="!service.editing; else editFieldType">
+                                        {{service.type}}
+                                    </ng-container>
+                                    <ng-template #editFieldType>
+                                        <div class="form-group">
+                                            <input [(ngModel)]="service.type" />
+                                        </div>
+                                    </ng-template>
+                                </td>
+
+                                <td>
+                                    <ng-container *ngIf="!service.editing; else editFieldPrix">
+                                    {{service.prix}}
+                                </ng-container>
+                                <ng-template #editFieldPrix>
+                                    <div class="form-group">
+                                        <input [(ngModel)]="service.prix" />
+                                    </div>
+                                </ng-template>
+                                </td>
+
+
+                                <td>
+                                    <ng-container *ngIf="!service.editing; else editButtons">
+                                        <button class="bg-gradient-primary me-2" (click)="service.editing =true"
+                                            style="font-size: 10px;">Modifier</button>
+                                        <button class="bg-gradient-danger" (click)="deleteService(service)"
+                                            style="font-size: 10px;">Supprimer</button>
+                                    </ng-container>
+                                    <ng-template #editButtons>
+                                        <div class="form-group">
+                                            <button class="bg-gradient-success me-2"
+                                                (click)="updateService(service)">Valider</button>
+                                            <button class="bg-gradient-danger"
+                                                (click)="service.editing = false">Annuler</button>
+                                        </div>
+                                    </ng-template>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center" *ngIf="serviceList.length > itemsPerPage">
+                        <pagination-controls (pageChange)="onPageChange($event)" [maxSize]="5"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

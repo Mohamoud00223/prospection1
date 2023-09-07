@@ -1,0 +1,151 @@
+
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="assets/images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-4">
+              <h3>Connexion</h3>
+        
+            </div>
+            <form action="#" method="post">
+              <div class="form-group first">
+                <label for="email">Adresse email</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="email">
+
+              </div>
+              <div class="form-group last mb-4">
+                <label for="password">Mot de passe</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="password">
+                
+              </div>
+              
+              <div class="d-flex mb-5 align-items-center">
+                <label class="control control--checkbox mb-0"><span class="caption">Se souvenir de moi</span>
+                  <input type="checkbox" checked="checked"/>
+                  <div class="control__indicator"></div>
+                </label>
+                <span class="ml-auto"><a href="/forgot-password" class="forgot-pass">Mot de passe oublié</a></span> 
+              </div>
+
+              <input type="button" class="btn" (click)="login()" value="Connecter" class="btn btn-block btn-primary">
+
+              <span class="d-block text-left my-4 text-muted">&mdash; ou connecter avec &mdash;</span>
+              
+              <div class="row mt-2">
+                <a (click)="signInWithGoogle()" style="text-decoration: none;cursor: pointer;">
+                    <div class="card shadow text-center">
+                        <div class="card-body">
+                            <img src="../../../assets/icons8-google-48.png" alt="" height="24px" width="24px"> Connecter avec Google
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+              <!-- <div class="social-login">
+                <a href="#" class="facebook">
+                  <span class="icon-facebook mr-3"></span> 
+                </a>
+                <a href="#" class="twitter">
+                  <span class="icon-twitter mr-3"></span> 
+                </a>
+                <a href="#" class="google">
+                  <span class="icon-google mr-3"></span> 
+                </a>
+              </div> -->
+            </form>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+    <div class="left-section">
+        <h1 class="position-relative top-50 text-center">PAGE D'AUTHENTIFICATION</h1>
+    </div>
+
+
+
+
+    <div class="container-fluid">
+      <div class="right-section">
+    <div class="row mt-5">
+        <div class="col"></div>
+        <div class="col-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <h4 class="text-dark text-muted">Login</h4>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Email</label>
+                          <input type="email" class="form-control" name="email" [(ngModel)]="email">
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+                          <input type="password" class="form-control" name="password" [(ngModel)]="password">
+                        </div>
+                        <button type="button" class="btn" (click)="login()">Connecter</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="/register" style="text-decoration: none;">Besoin d'un compte ? <span class="text-danger">Inscription</span></a>
+                            </div>
+                            <div class="col-md">
+                                <a href="/forgot-password" class="text-dark" style="text-decoration: none;"> Mot de passe oublie ? </a>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <a (click)="signInWithGoogle()" style="text-decoration: none;cursor: pointer;">
+                                <div class="card shadow text-center">
+                                    <div class="card-body">
+                                        <img src="../../../assets/icons8-google-48.png" alt="" height="24px" width="24px"> Connecter avec Google
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>  
+</div>
+ -->

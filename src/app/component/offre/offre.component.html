@@ -1,0 +1,148 @@
+<div class="container-fluid">
+    <!-- <div class="content-wrapper"> -->
+    <div class="row">
+        <div class="col-md-4 mt-5">
+            <div class="card border-0 shadow p-3">
+                <div class="form-floating mb-3 tetx-center">
+                    <h5 class="text-center text-warning">Ajout d'une offre</h5>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="nouvelleOffre.nom">
+                    <label for="nom">Nom</label>
+                </div>
+
+                <!-- <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="type" name="type" [(ngModel)]="nouvelleOffre.type">
+                    <label for="type">Type d'offre</label>
+                </div> -->
+
+                <div class="form-floating mb-3">
+                    <select class="form-control" id="type" name="type" [(ngModel)]="nouvelleOffre.type">
+
+                        <option value="homme">Offre Prospect</option>
+                        <option value="femme">Offre de fidelite</option>
+
+                    </select>
+                    <label for="type">Type d'offre</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="prix" name="prix" [(ngModel)]="nouvelleOffre.prix">
+                    <label for="mobile">Prix</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="description" name="description"
+                        [(ngModel)]="nouvelleOffre.description">
+                    <label for="mobile">Description</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="date" name="date" [(ngModel)]="nouvelleOffre.date">
+                    <label for="mobile">Date</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="serviceList" name="serviceList" multiple
+                        [(ngModel)]="selectedServices">
+                        <option *ngFor="let service of serviceList" [ngValue]="service">{{ service.nom }}</option>
+                    </select>
+                    <label for="services">Sélectionner des services</label>
+
+                </div>
+
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="prospect" name="prospect" [(ngModel)]="prospect">
+                        <option *ngFor="let prospect of prospectList" [ngValue]="prospect">{{ prospect.nom }} {{
+                            prospect.prenom }}</option>
+                    </select>
+                    <label for="prospect">Sélectionner un prospect</label>
+
+                </div>
+
+                <button class="btn btn-outline-success" (click)="ajouterOffre()">Ajouter une offre</button>
+
+            </div>
+        </div>
+        <div class="col-md-8 mt-2">
+            <!-- <div class="card p-3 shadow"> -->
+            <h5 class="text-danger"> Liste des offres</h5>
+            <div class="card p-3 shadow">
+                <div class="card-body" style="overflow-x: auto;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <!-- <th scope="col">Nom</th> -->
+                                <th scope="col">Type</th>
+                                <th scope="col">Prix (fcfa)</th>
+                                <!-- <th scope="col">Desctiption</th> -->
+                                <th scope="col">Prospect</th>
+                                <th scope="col">Service</th>
+                                <!-- <th scope="col">Date</th> -->
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let offre of getPaginatedOffreList()">
+                                <!-- <td>{{offre.nom}}</td> -->
+                                <td>
+                                    <ng-container *ngIf="!offre.editing; else editFieldType">
+                                        {{offre.type}}
+                                    </ng-container>
+                                    <ng-template #editFieldType>
+                                        <div class="form-group">
+                                            <input [(ngModel)]="offre.type" />
+                                        </div>
+                                    </ng-template>
+                                </td>
+
+
+                                <td>
+                                    <ng-container *ngIf="!offre.editing; else editFieldPrix">
+                                        {{offre.prix}}
+                                    </ng-container>
+                                    <ng-template #editFieldPrix>
+                                        <div class="form-group">
+                                            <input [(ngModel)]="offre.prix" />
+                                        </div>
+                                    </ng-template>
+                                </td>
+
+
+                                <!-- <td>{{offre.description}}</td> -->
+                                <td>{{ offre.prospect?.nom }} {{ offre.prospect?.prenom }}</td>
+                                <td>{{ offre.serviceNom }}</td>
+
+                                <td>
+                                    <ng-container *ngIf="!offre.editing; else editButtons">
+                                        <button class="bg-gradient-primary me-2" (click)="offre.editing = true"
+                                            style="font-size: 10px;">Modifier</button>
+                                        <button class="bg-gradient-danger" (click)="deleteOffre(offre)"
+                                            style="font-size: 10px;">Supprimer</button>
+                                    </ng-container>
+
+                                    <ng-template #editButtons>
+                                        <div class="form-group">
+                                            <button class="bg-gradient-success me-2"
+                                                (click)="updateOffre(offre)">Valider</button>
+                                            <button class="bg-gradient-danger"
+                                                (click)="offre.editing = false">Annuler</button>
+                                        </div>
+                                    </ng-template>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Ajoutez les contrôles de pagination -->
+                    <div class="text-center" *ngIf="offreList.length > itemsPerPage">
+                        <!-- <pagination-controls (pageChange)="onPageChange($event)" [maxSize]="5"></pagination-controls> -->
+                        <button (click)="onPreviousPage()" style="font-size: 10px;">Precedent</button>
+                        <button (click)="onNextPage()" style="font-size: 10px;">Suivant</button>
+                    </div>
+
+
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>

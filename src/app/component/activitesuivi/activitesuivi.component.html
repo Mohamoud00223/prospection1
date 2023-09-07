@@ -1,0 +1,98 @@
+<div class="content-wrapper">
+    <div class="card p-3 shadow">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Prenom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Numero</th>
+        
+            <!-- <th scope="col" class="ajouter-button" >Actions</th>  -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prospect of getPaginatedProspectList()">
+            <td>{{ prospect.prenom }}</td>
+            <td>{{ prospect.nom }}</td>
+            <td>{{ prospect.numero }}</td>
+            
+            <td>
+             
+              <button  class="btn btn-link" style="font-size: 10px;" [routerLink]="['/afficheractivite',prospect.id]">
+                <i class="fas fa-list"></i> Afficher activités
+              </button>
+              <button  class="btn btn-link" style="font-size: 10px;" (click)=" selectProspect(prospect)">
+                <i class="fas fa-plus"></i> Ajouter activité
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <!-- Ajoutez les contrôles de pagination -->
+      <div class="text-center" *ngIf="prospectList.length > itemsPerPage">
+        <button (click)="onPreviousPage()" style="font-size: 10px;" >Precedent</button>
+        <button (click)="onNextPage()" style="font-size: 10px;" >Suivant</button>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+  <!-- Ajouter le formulaire en tant que modal -->
+<div class="modal" [ngClass]="{'d-block': afficherFormulaire}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ajouter une activite</h5>
+        <button type="button" class="close" (click)="fermerModalAjout()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <form (ngSubmit)="addActiviteSuivi()" class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-2">Prospect:</label>
+            <div class="col-sm-10">
+              <input type="text" [value]="selectedProspect?.nom" class="form-control" [disabled]="true">
+            </div>
+          </div>
+      
+          <div class="form-group">
+            <label class="control-label col-sm-2">Type:</label>
+            <div class="col-sm-10">
+              <input type="text" name="type" [(ngModel)]="type" class="form-control">
+            </div>
+          </div>
+      
+          <div class="form-group">
+            <label class="control-label col-sm-2">Description:</label>
+            <div class="col-sm-10">
+              <input type="text" name="description" [(ngModel)]="description" class="form-control">
+            </div>
+          </div>
+      
+          <div class="form-group">
+            <label class="control-label col-sm-2">Date:</label>
+            <div class="col-sm-10">
+              <input type="text" name="date" [(ngModel)]="date" class="form-control">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>

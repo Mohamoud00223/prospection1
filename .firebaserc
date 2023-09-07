@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "app-gestion-prospect": {
+      "hosting": {
+        "prospection": [
+          "app-gestion-prospect"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "app-gestion-prospect"
+  }
+}

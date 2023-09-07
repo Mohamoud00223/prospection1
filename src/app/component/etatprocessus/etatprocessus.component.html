@@ -1,0 +1,32 @@
+<div class="content-wrapper">
+    <div class="card p-3 shadow">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Prenom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Numero</th>
+            <th scope="col">Etape</th>
+            <!-- <th scope="col">Date de mise à jour</th>  -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prospect of prospectList">
+            <td>{{ prospect.prenom }}</td>
+            <td>{{ prospect.nom }}</td>
+            <td>{{ prospect.numero }}</td>
+            <td>
+              <select [(ngModel)]="prospect.etape" (ngModelChange)="updateEtape(prospect)">
+                <option value="Prise de contact">Prise de contact</option>
+                <option value="Decouverte">Découverte</option>
+                <option value="Argumentaire/Demonstration">Argumentaire/Démonstration</option>
+                <option value="Closing">Closing</option>
+              </select>
+            </td>
+            <!-- <td>{{ prospect.dateMiseAJour | date: 'medium' }}</td>  -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

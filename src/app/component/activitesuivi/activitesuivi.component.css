@@ -1,0 +1,28 @@
+.content-wrapper {
+    background: #f2edf3;
+    padding: 2.75rem 2.25rem;
+    width: 100%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+/* Style pour la boîte modale elle-même */
+.modal-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1060;
+    width: 400px; /* Ajustez la largeur de la modal selon vos besoins */
+  }
+  
+  /* Style pour le titre de la modal */
+  .modal-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }

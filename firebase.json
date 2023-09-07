@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "prospection",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

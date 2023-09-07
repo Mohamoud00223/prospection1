@@ -1,0 +1,47 @@
+<div class="content-wrapper">
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Ajout d'un prospect</h4>
+        <p class="card-description"> Formulaire </p>
+        <form class="forms-sample">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="prenom" name="prenom" [(ngModel)]="prenom">
+                <label for="prenom">Prenom</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="nom">
+                <label for="nom">Nom</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="numero" name="numero" [(ngModel)]="numero">
+                <label for="numero">Numero</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="adresse" name="adresse" [(ngModel)]="adresse">
+                <label for="adresse">Adresse</label>
+            </div>
+        
+          <div class="form-group">
+            <label for="sexe">Sexe</label>
+            
+            <select class="form-control" id="sexe" name="sexe" [(ngModel)]="sexe">
+                
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+            
+            </select>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="status" name="status" [(ngModel)]="status">
+            <label for="status">Status</label>
+        </div>
+          
+          <button  class="btn btn-gradient-primary me-2" (click)="addProspect()">Ajouter</button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+          
+      </div>
+    </div>
+  </div>
+</div>
