@@ -1,0 +1,29 @@
+/* Style pour le tableau */
+.table.table-hover {
+    background-color: #f8f9fa; /* Couleur de fond légère pour le tableau */
+    font-size: 14px; /* Taille de police par défaut pour les cellules */
+}
+
+/* Style pour les en-têtes du tableau */
+.table.table-hover th {
+    background-color: #6c757d; /* Couleur de fond grise pour les en-têtes */
+    color: #fff; /* Texte blanc pour les en-têtes */
+    font-size: 16px; /* Taille de police pour les en-têtes */
+}
+
+/* Style pour les lignes du tableau au survol */
+.table.table-hover tbody tr:hover {
+    background-color: #e0e0e0; /* Couleur de fond au survol des lignes */
+}
+
+/* Style pour les cellules de la colonne "Etape" */
+.table.table-hover tbody td:nth-child(4) select {
+    font-size: 14px; /* Taille de police pour la liste déroulante */
+    padding: 3px 6px; /* Espacement interne des options de la liste déroulante */
+}
+
+/* Style pour les options de la liste déroulante au survol */
+.table.table-hover tbody td:nth-child(4) select option:hover {
+    background-color: #343a40; /* Couleur de fond au survol des options */
+    color: #fff; /* Texte blanc au survol des options */
+}

@@ -5,9 +5,9 @@ export interface Offre{
     id : string,
     nom : string,
     type : string,
-    prix : string,
+    prix : number,
     description : string,
-    date : Date,
+    date : string,
     services: Service[],
     prospect: Prospect | null, // Liste des services inclus dans l'offre
     serviceNom?: string,

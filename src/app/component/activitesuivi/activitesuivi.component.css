@@ -26,3 +26,93 @@
     font-weight: bold;
     margin-bottom: 10px;
   }
+
+
+  /* Style pour le deuxième tableau */
+.table.table-hover {
+  background-color: #f8f9fa; /* Couleur de fond légère pour le tableau */
+}
+
+.table.table-hover th {
+  background-color: #6c757d; /* Couleur de fond grise pour les en-têtes du tableau */
+  color: #fff; /* Texte blanc pour les en-têtes */
+}
+
+.table.table-hover tbody tr:hover {
+  background-color: #e0e0e0; /* Couleur de fond au survol des lignes */
+}
+
+
+
+.table.table-hover tbody td button:hover {
+  background-color: #102644; /* Couleur au survol des boutons */
+}
+
+
+
+/* Style pour le tableau */
+.table {
+  background-color: #f8f9fa; /* Une couleur de fond légère */
+}
+
+.table th {
+  background-color: #6c757d; /* Une couleur de fond grise pour les en-têtes */
+  color: #fff; /* Texte blanc pour les en-têtes */
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e0e0e0; /* Couleur de fond au survol des lignes */
+}
+
+/* Style pour les boutons */
+.ajouter-button, .bg-gradient-primary, .bg-gradient-danger, .bg-gradient-success {
+  background-color: #5bb2ff; /* Couleur des boutons */
+  color: #fff; /* Texte blanc pour les boutons */
+}
+
+.ajouter-button:hover, .bg-gradient-primary:hover, .bg-gradient-danger:hover, .bg-gradient-success:hover {
+  background-color: #86ceb0; /* Couleur au survol des boutons */
+}
+
+/* Style pour le formulaire modal */
+.modal-content {
+  background-color: #f8f9fa; /* Couleur de fond légère pour le modal */
+}
+
+.modal-title {
+  color: #6c757d; /* Couleur du titre du modal */
+}
+
+/* Style pour le formulaire du modal */
+.form-floating input[type="text"], .form-floating input[type="number"], .form-control, .form-select {
+  background-color: #fff; /* Couleur de fond des champs de formulaire */
+  border-color: #6c757d; /* Couleur de bordure des champs de formulaire */
+}
+
+.form-floating label {
+  color: #6c757d; /* Couleur du texte des labels */
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #343a40; /* Couleur de bordure au focus */
+}
+
+/* Style pour les icônes */
+i.fas.fa-edit, i.fas.fa-trash-alt, i.fas.fa-check, i.fas.fa-times {
+  font-size: 16px; /* Taille de police des icônes */
+  cursor: pointer; /* Curseur au survol des icônes */
+}
+
+/* Style pour les boutons de pagination */
+.text-center button {
+  background-color: #6c757d; /* Couleur des boutons de pagination */
+  color: #fff; /* Texte blanc pour les boutons de pagination */
+  font-size: 14px; /* Taille de police des boutons de pagination */
+  margin: 0 2px; /* Marge entre les boutons de pagination */
+}
+
+.text-center button:hover {
+  background-color: #343a40; /* Couleur au survol des boutons de pagination */
+}
+
+

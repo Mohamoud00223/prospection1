@@ -32,7 +32,7 @@ export class ServiceComponent implements OnInit {
 
   ngOnInit(): void {
     // Définissez itemsPerPage
-    this.itemsPerPage = 5;
+    this.itemsPerPage = 10;
     // this.data.getServiceListObservable().subscribe(updatedService => {
     //   // this.serviceList = updatedService;
     // });
@@ -50,7 +50,16 @@ export class ServiceComponent implements OnInit {
   addService() {
     console.log()
     if ( this.nom== '' || this.type == '' || this.prix == '') {
-      alert('Remplissez tous les champs de saisie');
+      // alert('Remplissez tous les champs de saisie');
+      // return;
+      // alert('Remplissez tous les champs de saisie');
+      Swal.fire({
+        heightAuto: false,
+        icon: 'error',
+        text: 'Remplissez tous les champs de saisie',
+        showConfirmButton: false,
+        timer: 2500
+      })
       return;
     }
 
@@ -63,7 +72,17 @@ export class ServiceComponent implements OnInit {
     this.data.addService(this.serviceObj);
     this.resetForm();
 
-    alert('Service ajouté avec succès!');
+    // alert('Service ajouté avec succès!');
+
+      // alert('Prospect ajouté avec succès!');
+      Swal.fire({
+        heightAuto: false,
+        icon: 'success',
+        text: 'Service ajouté avec succès',
+        showConfirmButton: false,
+        timer: 2500
+      })
+
 
   }
 
@@ -100,7 +119,7 @@ triAutomatique() {
       Swal.fire({
         heightAuto: false,
         icon: 'success',
-        text: 'Service ajouté avec succès',
+        text: 'Service modifie avec succès',
         showConfirmButton: false,
         timer: 2500
       })
@@ -113,7 +132,15 @@ triAutomatique() {
   deleteService(service: Service) {
     if (window.confirm('Etes vous sur de vouloir supprimer ' + service.nom + ' ' + service.type + ' ?')) {
       this.data.deleteService(service);
+      Swal.fire({
+        heightAuto: false,
+        icon: 'success',
+        text: 'Suppression effectuee avec succès',
+        showConfirmButton: false,
+        timer: 2500
+      })
     }
+    
   }
 
 
@@ -131,6 +158,26 @@ triAutomatique() {
     return this.serviceList.slice(startIndex, endIndex);
   }
 
+  afficherFormulaire: boolean = false;
+  afficherModalAjout() {
+    
+    this.afficherFormulaire = true;
+  }
+
+  fermerModalAjout() {
+    this.afficherFormulaire = false;
+    // Réinitialisez le nouveau conseil avec des valeurs vides pour le formulaire lors de la fermeture de la modal
+    this.serviceObj = {
+      id: '',
+      nom: '',
+      type: '',
+      prix: '',
+  };
+  }
+
+
+
+ 
 
 
 }

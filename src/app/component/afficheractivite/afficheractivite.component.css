@@ -1,0 +1,31 @@
+/* Style pour la table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  /* Style pour l'en-tête */
+  .table th {
+    background-color: #f8f9fa;
+    color: #212529;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Style pour chaque ligne */
+  .table-row {
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  /* Style pour chaque cellule */
+  .table-cell {
+    padding: 10px;
+  }
+  
+  /* Hover sur les lignes */
+  .table tbody tr:hover {
+    background-color: #f0f0f0;
+  }
+  

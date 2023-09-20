@@ -20,6 +20,10 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
     //Add active class to nav-link based on url dynamically
     //Active class can be hard coded directly in html file also as required
 
+
+
+
+    //fonction dans laquelle j'ai mon boutton sidenav et l'autre pour agrandir la page
     function addActiveClass(element) {
       if (current === "") {
         //for root url
@@ -45,36 +49,42 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
       }
     }
 
+
+
+
+     //fonction dans laquelle la couleur change lors d'un clique sur un composant
     var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
     $('.nav li a', sidebar).each(function() {
       var $this = $(this);
       addActiveClass($this);
     })
 
-    $('.horizontal-menu .nav li a').each(function() {
-      var $this = $(this);
-      addActiveClass($this);
-    })
+    // $('.horizontal-menu .nav li a').each(function() {
+    //   var $this = $(this);
+    //   addActiveClass($this);
+    // })
 
     //Close other submenu in sidebar on opening any
 
-    sidebar.on('show.bs.collapse', '.collapse', function() {
-      sidebar.find('.collapse.show').collapse('hide');
-    });
+    // sidebar.on('show.bs.collapse', '.collapse', function() {
+    //   sidebar.find('.collapse.show').collapse('hide');
+    // });
 
 
     //Change sidebar and content-wrapper height
-    applyStyles();
+    // applyStyles();
 
-    function applyStyles() {
-      //Applying perfect scrollbar
-      if (!body.hasClass("rtl")) {
-        if (body.hasClass("sidebar-fixed")) {
-          var fixedSidebarScroll = new PerfectScrollbar('#sidebar .nav');
-        }
-      }
-    }
+    // function applyStyles() {
+    //   //Applying perfect scrollbar
+    //   if (!body.hasClass("rtl")) {
+    //     if (body.hasClass("sidebar-fixed")) {
+    //       var fixedSidebarScroll = new PerfectScrollbar('#sidebar .nav');
+    //     }
+    //   }
+    // }
 
+
+    //pour fermer le side nav
     $('[data-toggle="minimize"]').on("click", function() {
       if ((body.hasClass('sidebar-toggle-display')) || (body.hasClass('sidebar-absolute'))) {
         body.toggleClass('sidebar-hidden');
@@ -84,7 +94,7 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
     });
 
     //checkbox and radios
-    $(".form-check label,.form-radio label").append('<i class="input-helper"></i>');
+    // $(".form-check label,.form-radio label").append('<i class="input-helper"></i>');
 
     //fullscreen
     $("#fullscreen-button").on("click", function toggleFullScreen() {

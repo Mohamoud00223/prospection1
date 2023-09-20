@@ -5,8 +5,9 @@ import { activitesuivi } from 'src/app/model/activitesuivi';
 import { Prospect } from 'src/app/model/prospect';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
+import Swal from 'sweetalert2';
 
-import { of } from 'rxjs';
+
 
 
 @Component({
@@ -16,10 +17,13 @@ import { of } from 'rxjs';
 })
 export class ActivitesuiviComponent implements OnInit {
 
+
+ 
+
   ngOnInit(): void {
    
     // Définissez itemsPerPage
-    this.itemsPerPage = 8;
+    this.itemsPerPage = 15;
 
     this.loadProspects();
     console.log(this.data);
@@ -120,7 +124,14 @@ export class ActivitesuiviComponent implements OnInit {
   addActiviteSuivi() {
 
     if (this.type == '' || this.description == '' || this.date == '' || !this.selectedProspect) {
-      alert('Remplissez tous les champs de saisie');
+      // alert('Remplissez tous les champs de saisie');
+      Swal.fire({
+        heightAuto: false,
+        icon: 'error',
+        text: 'Remplissez tous les champs de saisie',
+        showConfirmButton: false,
+        timer: 2500
+      })
       return;
     }
 
@@ -134,7 +145,15 @@ export class ActivitesuiviComponent implements OnInit {
     this.data.addActiviteSuivi(this.activiteObj);
     this.resetForm();
 
-    alert('Activite ajoutée avec succès!');
+    // alert('Activite ajoutée avec succès!');
+    Swal.fire({
+      heightAuto: false,
+      icon: 'success',
+      text: 'Activité ajoutée avec succès',
+      showConfirmButton: false,
+      timer: 2500
+    })
+
 
   }
 

@@ -4,6 +4,7 @@ import { Prospect } from 'src/app/model/prospect';
 import { DataService } from 'src/app/services/data.service';
 import { Offre } from 'src/app/model/offre';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-offre',
@@ -11,7 +12,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./offre.component.css']
 })
 export class OffreComponent implements OnInit {
-
+  constructor(private dataService: DataService, private mh: AngularFirestore, private data: DataService) { }
   // Ajoutez une variable pour gérer la pagination
   currentPage: number = 1;
   itemsPerPage: number = 5;
@@ -27,19 +28,33 @@ export class OffreComponent implements OnInit {
     id: '',
     nom: '',
     type: '',
-    prix: '',
+    prix: 0,
     description: '',
-    date: new Date(),
+    date: '',
     services: [],
     prospect: null,// Initialiser à null
-    editing: false
+    editing: false,
+    
   };
 
-  constructor(private dataService: DataService, private mh: AngularFirestore, private data: DataService) { }
+  // resetForm() {
+  //   this.id = '';
+  //   this.nom ='';
+  //   this.type ='';
+  //   this.prix ='';
+  //   this.description ='';
+  //   this.date: new Date(),
+  //   this.services: [],
+  //   this.prospect: null,// Initialiser à null
+  //   this.editing: false
+  //   }
+
+
+ 
 
   ngOnInit(): void {
     // Définissez itemsPerPage
-    this.itemsPerPage = 5;
+    this.itemsPerPage = 10;
 
     this.getAllServices();
     console.log(this.serviceList);
@@ -47,7 +62,7 @@ export class OffreComponent implements OnInit {
     // Récupérer la liste des prospects depuis Firestore
     this.data.getProspectListObservable().subscribe(updatedProspects => {
       this.prospectList = updatedProspects;
-      
+
     });
 
     this.getAllProspects();
@@ -75,8 +90,7 @@ export class OffreComponent implements OnInit {
   }
 
 
-
-
+  
   ajouterOffre() {
     if (this.prospect) {
       const nouvelleOffre: Offre = {
@@ -85,7 +99,7 @@ export class OffreComponent implements OnInit {
         type: this.nouvelleOffre.type, // Remplacez par la valeur appropriée
         prix: this.nouvelleOffre.prix, // Remplacez par la valeur appropriée
         description: this.nouvelleOffre.description, // Remplacez par la valeur appropriée
-        date: new Date(), // Remplacez par la date appropriée
+        date: this.nouvelleOffre.date, // Remplacez par la date appropriée
         services: this.selectedServices, // Utilisez la liste de services sélectionnés
         prospect: this.prospect,
         editing: false
@@ -94,15 +108,24 @@ export class OffreComponent implements OnInit {
 
       // Appelez la méthode d'ajout d'offre du service DataService
       this.dataService.addOffre(nouvelleOffre, this.selectedServices, this.prospect);
-
+    
+      
+      // alert('Prospect ajouté avec succès!');
+      Swal.fire({
+        heightAuto: false,
+        icon: 'success',
+        text: 'Offre ajoutée avec succès',
+        showConfirmButton: false,
+        timer: 2500
+      })
       // Réinitialisez les valeurs du composant si nécessaire
       this.nouvelleOffre = {
         id: '',
         nom: '',
         type: '',
-        prix: '',
+        prix: 0,
         description: '',
-        date: new Date(),
+        date: '',
         services: [],
         prospect: null,
         editing: false
@@ -110,7 +133,14 @@ export class OffreComponent implements OnInit {
       this.selectedServices = [];
       this.prospect = null;
     } else {
-      alert('Veuillez sélectionner un prospect avant d\'ajouter une offre.');
+      // alert('Veuillez sélectionner un prospect avant d\'ajouter une offre.');
+      Swal.fire({
+        heightAuto: false,
+        icon: 'error',
+        text: 'Remplissez tous les champs de saisie',
+        showConfirmButton: false,
+        timer: 2500
+      })
     }
   }
 
@@ -147,7 +177,7 @@ export class OffreComponent implements OnInit {
         data.editing = false;
         return data as Offre; // Assurez-vous de caster les données en tant qu'objet Offre
       });
-  
+
       // Pour chaque offre, récupérez les noms des services inclus
       this.offreList.forEach((offre: Offre) => {
         offre.serviceNom = offre.services.map(service => service.nom).join(', '); // Concatène les noms des services
@@ -156,20 +186,34 @@ export class OffreComponent implements OnInit {
       alert('Erreur lors de la récupération des données des Services');
     });
   }
-  
-  
+
+
 
   deleteOffre(offre: Offre) {
-    if (window.confirm('Etes vous sur de vouloir supprimer cette offre'  + ' ?')) {
+    if (window.confirm('Etes vous sur de vouloir supprimer cette offre' + ' ?')) {
       this.data.deleteOffre(offre);
     }
+    Swal.fire({
+      heightAuto: false,
+      icon: 'success',
+      text: 'Suppression effectuee avec succès',
+      showConfirmButton: false,
+      timer: 2500
+    })
   }
 
   updateOffre(offre: Offre) {
     this.data.updateOffre(offre).then(() => {
       offre.editing = false;
     });
-    alert('Modification effectuee avec succes')
+    // 
+    Swal.fire({
+      heightAuto: false,
+      icon: 'success',
+      text: 'Modification effectuee avec succès',
+      showConfirmButton: false,
+      timer: 2500
+    })
   }
 
   // Restez à jour avec la page actuelle lorsque l'utilisateur change de page
@@ -190,12 +234,59 @@ export class OffreComponent implements OnInit {
       this.currentPage--;
     }
   }
-  
+
   onNextPage(): void {
     // Vous pouvez ajouter une validation pour éviter de dépasser le nombre total de pages, si nécessaire
     // if (this.currentPage < this.totalPages) {
     this.currentPage++;
     // }
   }
+
+
+
+
+
+  afficherFormulaire: boolean = false;
+  afficherModalAjout() {
+
+    this.afficherFormulaire = true;
+  }
+
+
+  fermerModalAjout() {
+    this.afficherFormulaire = false;
+    // Réinitialisez le nouveau conseil avec des valeurs vides pour le formulaire lors de la fermeture de la modal
+    this.nouvelleOffre = {
+      id: '',
+      nom: '',
+      type: '',
+      prix: 0,
+      description: '',
+      date: '',
+      services: [],
+      prospect: null,// Initialiser à null
+      editing: false
+
+    };
+  }
+
+
+  calculerPrix() {
+    // Obtenez la liste des services sélectionnés
+    const servicesSelectionnes = this.selectedServices;
+  
+    // Initialisez le prix à zéro
+    let prixTotal = 0;
+  
+    // Parcourez la liste des services sélectionnés et ajoutez leur prix au total
+    servicesSelectionnes.forEach(service => {
+      prixTotal += parseFloat(service.prix); // Assurez-vous que votre objet service a une propriété "prix" de type numérique
+    });
+  
+    // Mettez à jour la propriété "prix" de la nouvelle offre en tant que nombre
+    this.nouvelleOffre.prix = prixTotal;
+  }
+  
+  
 
 }

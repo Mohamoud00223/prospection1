@@ -1,24 +1,26 @@
 <div class="content-wrapper">
-    <div class="card p-3 shadow">
+    <div class="card">
       <table class="table table-hover">
         <thead>
           <tr>
             <th scope="col">Prenom</th>
             <th scope="col">Nom</th>
             <th scope="col">Numero</th>
+            <th scope="col">Etape</th>
         
-            <!-- <th scope="col" class="ajouter-button" >Actions</th>  -->
+            
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let prospect of getPaginatedProspectList()">
+          <tr *ngFor="let prospect of getPaginatedProspectList()" [class.table-success]="prospect.etape === 'Closing'" [class.table-secondary]="prospect.etape !== 'Closing'">
             <td>{{ prospect.prenom }}</td>
             <td>{{ prospect.nom }}</td>
             <td>{{ prospect.numero }}</td>
+            <td>{{ prospect.etape }}</td>
             
             <td>
-             
-              <button  class="btn btn-link" style="font-size: 10px;" [routerLink]="['/afficheractivite',prospect.id]">
+            
+              <button  class="btn btn-link" style="font-size: 10px;" [routerLink]="['/dashboard/afficheractivite',prospect.id]">
                 <i class="fas fa-list"></i> Afficher activités
               </button>
               <button  class="btn btn-link" style="font-size: 10px;" (click)=" selectProspect(prospect)">
@@ -36,6 +38,7 @@
         <button (click)="onNextPage()" style="font-size: 10px;" >Suivant</button>
       </div>
     </div>
+    
   </div>
   
 
@@ -81,10 +84,13 @@
           <div class="form-group">
             <label class="control-label col-sm-2">Date:</label>
             <div class="col-sm-10">
-              <input type="text" name="date" [(ngModel)]="date" class="form-control">
+              <input type="date" name="date" [(ngModel)]="date" class="form-control">
             </div>
           </div>
           
+        
+          
+
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-primary">Ajouter</button>

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { Input, NgModule } from '@angular/core';
+import { BrowserModule, platformBrowser } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -26,6 +26,12 @@ import { CreateAccountComponent } from './component/create-account/create-accoun
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AfficheractiviteComponent } from './component/afficheractivite/afficheractivite.component';
+import { TableaubordComponent } from './component/tableaubord/tableaubord.component';
+// import {MatDatepickerModule} from '@angular/material/datepicker';
+// import {MatInputModule} from '@angular/material/input';
+// import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+// import { MatNativeDateModule } from '@angular/material/core';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -43,10 +49,9 @@ import { AfficheractiviteComponent } from './component/afficheractivite/afficher
     ActivitesuiviComponent,
     EtatprocessusComponent,
     CreateAccountComponent,
-    ActivitesuiviComponent,
-    AfficheractiviteComponent
-    
-   
+    // ActivitesuiviComponent,
+    AfficheractiviteComponent,
+    TableaubordComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,12 @@ import { AfficheractiviteComponent } from './component/afficheractivite/afficher
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     NgxPaginationModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    // MatDatepickerModule,
+    // MatInputModule,
+    // MatFormFieldModule,
+    // MatNativeDateModule,
+    // BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,11 +13,11 @@ import { ActivitesuiviComponent } from './component/activitesuivi/activitesuivi.
 import { EtatprocessusComponent } from './component/etatprocessus/etatprocessus.component';
 import { CreateAccountComponent } from './component/create-account/create-account.component';
 import { AfficheractiviteComponent } from './component/afficheractivite/afficheractivite.component';
+import { TableaubordComponent } from './component/tableaubord/tableaubord.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
   {path:'login', component : LoginComponent},
-  {path:'afficheractivite/:prospectId', component : AfficheractiviteComponent},
   {path:'register', component : RegisterComponent},
   {path:'verifie-email', component : VerifieEmailComponent},
   {path:'forgot-password', component : ForgotPasswordComponent},
@@ -29,6 +29,8 @@ const routes: Routes = [
     {path:'activitesuivi', component : ActivitesuiviComponent},
     {path:'etatprocessus', component : EtatprocessusComponent},
     {path:'create-account', component : CreateAccountComponent},
+    {path:'afficheractivite/:prospectId', component : AfficheractiviteComponent},
+    {path:'tableaubord', component : TableaubordComponent},
    
   
   ]},
